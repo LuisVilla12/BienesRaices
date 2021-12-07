@@ -16,21 +16,4 @@
         <p>Aliquam lectus magna, luctus vel gravida nec, iaculis ut augue. Praesent ac enim lorem. Quisque ac dignissim sem, non condimentum orci. Morbi a iaculis neque, ac euismod felis. Fusce augue quam, fermentum sed turpis nec, hendrerit dapibus ante. Cras mattis laoreet nibh, quis tincidunt odio fermentum vel. Nulla facilisi.</p>
     </div>
 </main>
-
-<footer class="footer seccion">
-    <div class="contenedor contenedor-footer">
-        <nav class="navegacion">
-            <a href="nosotros.php">Nosotros</a>
-            <a href="anuncios.php">Anuncios</a>
-            <a href="blog.php">Blog</a>
-            <a href="contacto.php">Contacto</a>
-        </nav>
-    </div>
-
-    <p class="copyright">Todos los derechos Reservados 2021 &copy;</p>
-</footer>
-
-<script src="build/js/bundle.min.js"></script>
-</body>
-
-</html>
+<?php include 'includes/templeates/footer.php'; ?>
