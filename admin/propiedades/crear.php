@@ -5,14 +5,29 @@ $db = conectarDB();
 
 //  valida que el meotodo sea post y no get
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     //Mostrar datos de  la variable POST
-//     echo "<pre>";
-//     var_dump($_POST);
-//     echo "</pre>";
-// Declara las variables 
-     $titulo = $_POST['titulo'];
-     $precio = $_POST['precio'];
- }
+    //     //Mostrar datos de  la variable POST
+    // echo "<pre>";
+    // var_dump($_POST);
+    // echo "</pre>";
+    // Declara las variables 
+    $titulo = $_POST['titulo'];
+    $precio = $_POST['precio'];
+    $descripcion = $_POST['descripcion'];
+    $habitaciones = $_POST['habitaciones'];
+    $wc = $_POST['wc'];
+    $estacionamiento = $_POST['estacionamientos'];
+    $vendedorID = $_POST['vendedor'];
+
+    // insertar en la base de datos
+    $query= "INSERT INTO propiedades(titulo,precio,descripcion,habitaciones,wc,estacionamiento,vendedorID) values('$titulo','$precio','$descripcion','$habitaciones','$wc','$estacionamiento','$vendedorID')";
+
+    //almacenar en base de datos
+    $resultado= mysqli_query($db,$query);
+    if($resultado){
+        echo "Registrado correctamente";
+    }
+
+}
 
 require '../../includes/funciones.php';
 incluirTempleate('header');
@@ -35,24 +50,24 @@ incluirTempleate('header');
             <input type="file" id="imagen" name="" accept="image/jpeg , image/png">
 
             <label for="descripcion">Descripcion:</label>
-            <textarea name="" id="descripcion"></textarea>
+            <textarea name="descripcion" id="descripcion"></textarea>
         </fieldset>
         <fieldset>
             <legend>Informacion de la propiedad</legend>
             <label for="habitaciones">habitaciones:</label>
-            <input type="number" id="habitaciones" name="" placeholder="N° habitaciones" min="1">
+            <input type="number" id="habitaciones" name="habitaciones" placeholder="N° habitaciones" min="1">
 
             <label for="baños">Baños:</label>
-            <input type="number" id="baños" name="" placeholder="N° baños" min="1">
+            <input type="number" id="baños" name="wc" placeholder="N° baños" min="1">
 
             <label for="estacionamiento">Estacionamientos:</label>
-            <input type="number" id="estacionamiento" name="" placeholder="N° estacionamientos" min="1">
+            <input type="number" id="estacionamiento" name="estacionamientos" placeholder="N° estacionamientos" min="1">
         </fieldset>
 
         <fieldset>
             <legend>Informacion del vendedor</legend>
 
-            <select name="" id="">
+            <select name="vendedor" id="">
                 <option value="1" selected disabled>--Sin seleccionar--</option>
                 <option value="1">Luis</option>
                 <option value="2">Aldrich</option>
