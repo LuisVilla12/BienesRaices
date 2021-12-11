@@ -1,7 +1,18 @@
 <?php
 require '../../includes/config/database.php';
-$db=conectarDB();
+$db = conectarDB();
 
+
+//  valida que el meotodo sea post y no get
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     //Mostrar datos de  la variable POST
+//     echo "<pre>";
+//     var_dump($_POST);
+//     echo "</pre>";
+// Declara las variables 
+     $titulo = $_POST['titulo'];
+     $precio = $_POST['precio'];
+ }
 
 require '../../includes/funciones.php';
 incluirTempleate('header');
@@ -9,14 +20,16 @@ incluirTempleate('header');
 <main class="contenedor seccion">
     <h1>Crear</h1>
     <a href="/admin" class="boton boton-verde">Volver</a>
-    <form action="" class="formulario">
+    <!-- action donde se llevara a cabo el proceso de validacion -->
+    <!-- mandar datos a un servidor es recomendable usar el metodo post -->
+    <form class="formulario" action="/admin/propiedades/crear.php" method="POST">
         <fieldset>
             <legend> Informacion general</legend>
             <label for="titulo">Titulo:</label>
-            <input type="text" id="titulo" name="" placeholder="Ingrese un titulo">
+            <input type="text" id="titulo" name="titulo" placeholder="Ingrese un titulo">
 
             <label for="precio">Precio:</label>
-            <input type="number" id="precio" name="" placeholder="Ingrese un precio">
+            <input type="number" id="precio" name="precio" placeholder="Ingrese un precio">
 
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="" accept="image/jpeg , image/png">
