@@ -1,4 +1,8 @@
 <?php
+require '../../includes/config/database.php';
+$db=conectarDB();
+
+
 require '../../includes/funciones.php';
 incluirTempleate('header');
 ?>
@@ -33,13 +37,13 @@ incluirTempleate('header');
         </fieldset>
 
         <fieldset>
-        <legend>Informacion del vendedor</legend>
+            <legend>Informacion del vendedor</legend>
 
-        <select name="" id="">
-            <option value="1" selected disabled>--Sin seleccionar--</option>
-            <option value="1">Luis</option>
-            <option value="2">Aldrich</option>
-        </select>
+            <select name="" id="">
+                <option value="1" selected disabled>--Sin seleccionar--</option>
+                <option value="1">Luis</option>
+                <option value="2">Aldrich</option>
+            </select>
         </fieldset>
 
         <input type="submit" value="Registrar" class="boton boton-verde">
