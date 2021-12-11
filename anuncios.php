@@ -1,4 +1,7 @@
-<?php  include 'includes/templeates/header.php'; ?>
+<?php
+    require 'includes/funciones.php';
+    incluirTempleate('header');
+?>
 <main class="contenedor seccion">
     <h2>Casas y Depas en Venta</h2>
     <div class="contenedor-anuncios">
@@ -216,4 +219,4 @@
     <!--.contenedor-anuncios-->
 </main>
 
-<?php include 'includes/templeates/footer.php'; ?>
+<?php incluirTempleate('footer'); ?>

@@ -1,4 +1,7 @@
-<?php  include 'includes/templeates/header.php'; ?>
+<?php
+    require 'includes/funciones.php';
+    incluirTempleate('header');
+?>
 <main class="contenedor seccion contenido-centrado">
     <h1>Casa en Venta frente al bosque</h1>
 
@@ -31,4 +34,4 @@
     </div>
 </main>
 
-<?php include 'includes/templeates/footer.php'; ?>
+<?php incluirTempleate('footer'); ?>

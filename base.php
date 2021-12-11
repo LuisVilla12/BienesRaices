@@ -1,6 +1,9 @@
-<?php  include 'includes/templeates/header.php'; ?>
+<?php
+    require 'includes/funciones.php';
+    incluirTempleate('header');
+?>
     <main class="contenedor seccion">
         <h1>Titulo Página</h1>
     </main>
 
-<?php include 'includes/templeates/footer.php'; ?>
+<?php incluirTempleate('footer'); ?>
