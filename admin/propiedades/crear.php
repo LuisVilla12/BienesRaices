@@ -2,6 +2,10 @@
 require '../../includes/config/database.php';
 $db = conectarDB();
 
+// Consulta para vendedores
+$query2= "SELECT * FROM vendedores";
+$resultado2=mysqli_query($db,$query2);
+
 // Mensaje de errores 
 $errores = [];
 
@@ -13,6 +17,7 @@ $habitaciones = "";
 $wc = "";
 $estacionamiento = "";
 $vendedor = "";
+$creado=date('Y/m/d');
 
 //  valida que el meotodo sea post y no get
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -62,12 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Revisar que el arreglo de erroes este vacio
     if(empty($errores)){
-        $query = "INSERT INTO propiedades(titulo,precio,descripcion,habitaciones,wc,estacionamiento,vendedorID) values('$titulo','$precio','$descripcion','$habitaciones','$wc','$estacionamiento','$vendedor')";
+        $query = "INSERT INTO propiedades(titulo,precio,descripcion,habitaciones,wc,estacionamiento,creado,vendedorID) values('$titulo','$precio','$descripcion','$habitaciones','$wc','$estacionamiento','$creadSo','$vendedor')";
 
         //almacenar en base de datos
         $resultado = mysqli_query($db, $query);
         if ($resultado) {
-            echo "Registrado correctamente";
+            // Una vez termine su registro sera redireccionado
+            header('Location: /admin');
         } else {
             echo "Error";
         }
@@ -111,9 +117,12 @@ incluirTempleate('header');
         <fieldset>
             <legend>Informacion del vendedor</legend>
             <select name="vendedor" id="vendedor">
-                <option value ="" selected>--Sin seleccionar--</option>
-                <option value="1">Luis</option>
-                <option value="2">Aldrich</option>
+                <option value ="" selected >--Sin seleccionar--</option>
+                <!-- Mostrar resultado de la consulta de vendedores -->
+                <?php while ($row = mysqli_fetch_assoc($resultado2)): ?>
+                    <option <?php echo $vendedor === $row['id'] ? 'selected': ''; ?> value ="<?php echo $row['id']; ?>"> <?php echo $row['nombre'] . " ". $row['apellido'];?></option>
+                <?php endwhile ?>
+                
             </select>
         </fieldset>
         <input type="submit" value="Registrar" class="boton boton-verde">
