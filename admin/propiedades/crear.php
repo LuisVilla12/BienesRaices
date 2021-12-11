@@ -25,14 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // echo "<pre>";
     // var_dump($_POST);
     // echo "</pre>";
-    // Declara las variables 
-    $titulo = $_POST['titulo'];
-    $precio = $_POST['precio'];
-    $descripcion = $_POST['descripcion'];
-    $habitaciones = $_POST['habitaciones'];
-    $wc = $_POST['wc'];
-    $estacionamiento = $_POST['estacionamientos'];
-    $vendedor = $_POST['vendedor'];
+
+    // Declara las variables  y las sanitiza 
+    $titulo = mysqli_real_escape_string($db,$_POST['titulo']);
+    $precio =mysqli_real_escape_string( $db,$_POST['precio']);
+    $descripcion =mysqli_real_escape_string( $db,$_POST['descripcion']);
+    $habitaciones = mysqli_real_escape_string($db,$_POST['habitaciones']);
+    $wc =mysqli_real_escape_string( $db,$_POST['wc']);
+    $estacionamiento =mysqli_real_escape_string( $db,$_POST['estacionamientos']);
+    $vendedor =mysqli_real_escape_string( $db,$_POST['vendedor']);
 
     // Valida que los campos no esten vacios
     if (!$titulo) {
