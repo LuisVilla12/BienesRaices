@@ -4,18 +4,16 @@
         color: $grisOscuro;
         margin: 2rem 0 0 0;
     }
-
     legend {
         font-size: 2rem;
         color: $grisOscuro;
     }
-
     label {
         font-weight: $bold;
         text-transform: uppercase;
         display: block;
     }
-    input:not([type="submit"]), 
+    input:not([type="submit"]),
     textarea,
     select {
         padding: 1rem;
@@ -26,11 +24,9 @@
         border-radius: 1rem;
         margin-bottom: 2rem;
     }
-
     textarea {
         height: 20rem;
     }
-
     .forma-contacto {
         max-width: 30rem;
         display: flex;

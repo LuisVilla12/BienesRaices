@@ -2,6 +2,8 @@
 require '../../includes/config/database.php';
 $db = conectarDB();
 
+// Mensaje de errores 
+$errores = [];
 
 //  valida que el meotodo sea post y no get
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,17 +18,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $habitaciones = $_POST['habitaciones'];
     $wc = $_POST['wc'];
     $estacionamiento = $_POST['estacionamientos'];
-    $vendedorID = $_POST['vendedor'];
+    $vendedor = $_POST['vendedor'];
 
-    // insertar en la base de datos
-    $query= "INSERT INTO propiedades(titulo,precio,descripcion,habitaciones,wc,estacionamiento,vendedorID) values('$titulo','$precio','$descripcion','$habitaciones','$wc','$estacionamiento','$vendedorID')";
-
-    //almacenar en base de datos
-    $resultado= mysqli_query($db,$query);
-    if($resultado){
-        echo "Registrado correctamente";
+    // Valida que los campos no esten vacios
+    if (!$titulo) {
+        $errores[] = "Debes añadir un titulo";
+    }
+    if (!$precio) {
+        $errores[] = "Debes añadir un precio";
+    }
+    if (!$descripcion) {
+        $errores[] = "Debes añadir una descripcion";
+    }
+    if (!$habitaciones) {
+        $errores[] = "Debes añadir una habitacion";
+    }
+    if (!$habitaciones) {
+        $errores[] = "Debes añadir una habitacion";
+    }
+    if (!$wc) {
+        $errores[] = "Debes añadir un wc";
+    }
+    if (!$estacionamiento) {
+        $errores[] = "Debes añadir un estacionamiento";
+    }
+    if (!$vendedor) {
+        $errores[] = "Debes seleccionar un vendedor";
     }
 
+    // Muestra los errores
+    // echo "<pre>";
+    // var_dump($errores);
+    // echo "</pre>";
+
+// Revisar que el arreglo de erroes este vacio
+    if(empty($errores)){
+        $query = "INSERT INTO propiedades(titulo,precio,descripcion,habitaciones,wc,estacionamiento,vendedorID) values('$titulo','$precio','$descripcion','$habitaciones','$wc','$estacionamiento','$vendedor')";
+
+        //almacenar en base de datos
+        $resultado = mysqli_query($db, $query);
+        if ($resultado) {
+            echo "Registrado correctamente";
+        } else {
+            echo "Error";
+        }
+    }
 }
 
 require '../../includes/funciones.php';
@@ -63,19 +99,24 @@ incluirTempleate('header');
             <label for="estacionamiento">Estacionamientos:</label>
             <input type="number" id="estacionamiento" name="estacionamientos" placeholder="N° estacionamientos" min="1">
         </fieldset>
-
         <fieldset>
             <legend>Informacion del vendedor</legend>
-
-            <select name="vendedor" id="">
-                <option value="1" selected disabled>--Sin seleccionar--</option>
+            <select name="vendedor" id="vendedor">
+                <option value ="" selected>--Sin seleccionar--</option>
                 <option value="1">Luis</option>
                 <option value="2">Aldrich</option>
             </select>
         </fieldset>
-
         <input type="submit" value="Registrar" class="boton boton-verde">
     </form>
+
+    <!-- imprime los errores -->
+    <?php foreach($errores as $error):?>
+        <!-- estilos a los erroes -->
+        <div class="alerta error">
+            <?php echo $error;?>
+        </div>
+    <?php endforeach;?>
 </main>
 
 <?php incluirTempleate('footer'); ?>
