@@ -5,6 +5,15 @@ $db = conectarDB();
 // Mensaje de errores 
 $errores = [];
 
+// Iniciacion de la variables
+$titulo = "";
+$precio = "";
+$descripcion = "";
+$habitaciones = "";
+$wc = "";
+$estacionamiento = "";
+$vendedor = "";
+
 //  valida que el meotodo sea post y no get
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //     //Mostrar datos de  la variable POST
@@ -77,27 +86,27 @@ incluirTempleate('header');
         <fieldset>
             <legend> Informacion general</legend>
             <label for="titulo">Titulo:</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Ingrese un titulo">
+            <input type="text" id="titulo" name="titulo" placeholder="Ingrese un titulo" value="<?php echo $titulo;?>">
 
             <label for="precio">Precio:</label>
-            <input type="number" id="precio" name="precio" placeholder="Ingrese un precio">
+            <input type="number" id="precio" name="precio" placeholder="Ingrese un precio" value="<?php echo $precio;?>">
 
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="" accept="image/jpeg , image/png">
 
             <label for="descripcion">Descripcion:</label>
-            <textarea name="descripcion" id="descripcion"></textarea>
+            <textarea name="descripcion" id="descripcion"><?php echo $descripcion;?></textarea>
         </fieldset>
         <fieldset>
             <legend>Informacion de la propiedad</legend>
             <label for="habitaciones">habitaciones:</label>
-            <input type="number" id="habitaciones" name="habitaciones" placeholder="N° habitaciones" min="1">
+            <input type="number" id="habitaciones" name="habitaciones" placeholder="N° habitaciones" min="1" value="<?php echo $habitaciones;?>">
 
             <label for="baños">Baños:</label>
-            <input type="number" id="baños" name="wc" placeholder="N° baños" min="1">
+            <input type="number" id="baños" name="wc" placeholder="N° baños" min="1" value="<?php echo $wc;?>">
 
             <label for="estacionamiento">Estacionamientos:</label>
-            <input type="number" id="estacionamiento" name="estacionamientos" placeholder="N° estacionamientos" min="1">
+            <input type="number" id="estacionamiento" name="estacionamientos" placeholder="N° estacionamientos" min="1" value="<?php echo $estacionamiento;?>">
         </fieldset>
         <fieldset>
             <legend>Informacion del vendedor</legend>
