@@ -20,6 +20,9 @@ incluirTempleate('header');
     if ($resultado == 1) {
         echo "Registrado correctamente";
     }
+    elseif ($resultado == 2) {
+        echo "Actualizado correctamente";
+    }
     ?>
 
     <table class="listado">
@@ -38,8 +41,8 @@ incluirTempleate('header');
                 <td><?php echo $propiedad['titulo']; ?></td>
                 <td><?php echo $propiedad['precio']; ?></td>
                 <td>
-                    <a href="" class="boton-amarillo-block">Actualizar</a>
-                    <a href="" class="boton-rojo-block">Eliminar</a>
+                    <a href="propiedades/actualizar.php?id=<?php echo $propiedad['id'];?>" class="boton-amarillo-block">Actualizar</a>
+                    <a href="propiedades/borrar.php" class="boton-rojo-block">Eliminar</a>
                 </td>
             </tr>
             <?php endwhile;?>

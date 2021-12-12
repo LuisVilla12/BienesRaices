@@ -69,13 +69,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Revisar que el arreglo de erroes este vacio
     if(empty($errores)){
         $query = "INSERT INTO propiedades(titulo,precio,descripcion,habitaciones,wc,estacionamiento,creado,vendedorID) values('$titulo','$precio','$descripcion','$habitaciones','$wc','$estacionamiento','$creado','$vendedor')";
-
-        //almacenar en base de datos
         $resultado = mysqli_query($db, $query);
         if ($resultado) {
             // Una vez termine su registro sera redireccionado
             header('Location: /admin?resultado=1');
         } 
+        else{
+            $errores[] = "Excediste el sueldo mayor";
+        }
     }
 }
 
