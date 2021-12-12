@@ -68,16 +68,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Revisar que el arreglo de erroes este vacio
     if(empty($errores)){
-        $query = "INSERT INTO propiedades(titulo,precio,descripcion,habitaciones,wc,estacionamiento,creado,vendedorID) values('$titulo','$precio','$descripcion','$habitaciones','$wc','$estacionamiento','$creadSo','$vendedor')";
+        $query = "INSERT INTO propiedades(titulo,precio,descripcion,habitaciones,wc,estacionamiento,creado,vendedorID) values('$titulo','$precio','$descripcion','$habitaciones','$wc','$estacionamiento','$creado','$vendedor')";
 
         //almacenar en base de datos
         $resultado = mysqli_query($db, $query);
         if ($resultado) {
             // Una vez termine su registro sera redireccionado
-            header('Location: /admin');
-        } else {
-            echo "Error";
-        }
+            header('Location: /admin?resultado=1');
+        } 
     }
 }
 
@@ -89,7 +87,7 @@ incluirTempleate('header');
     <a href="/admin" class="boton boton-verde">Volver</a>
     <!-- action donde se llevara a cabo el proceso de validacion -->
     <!-- mandar datos a un servidor es recomendable usar el metodo post -->
-    <form class="formulario" action="/admin/propiedades/crear.php" method="POST">
+    <form class="formulario" action="/admin/propiedades/crear.php" method="POST" enctype="multipart/form-data">
         <fieldset>
             <legend> Informacion general</legend>
             <label for="titulo">Titulo:</label>
