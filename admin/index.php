@@ -1,4 +1,8 @@
 <?php
+// echo "<pre>";
+// var_dump($_POST);
+// echo "</pre>";
+
 // Importar conexion
 require '../includes/config/database.php';
 $db = conectarDB();
@@ -9,6 +13,20 @@ $consulta= mysqli_query($db,$query);
 
 // Saber si se registro correctamente
 $resultado = $_GET['resultado'] ?? null;
+
+// Validar que se seleccione el boton eliminar tenga un valor
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $id=$_POST['id'];
+    $id= filter_var($id, FILTER_VALIDATE_INT);
+    if($id){
+        $query2="DELETE FROM propiedades WHERE id=${id}";
+        $resultado2=mysqli_query($db,$query2);
+
+        if($resultado2){
+            header('Location: /admin');
+        }
+    }
+}
 
 require '../includes/funciones.php';
 incluirTempleate('header');
@@ -42,7 +60,11 @@ incluirTempleate('header');
                 <td><?php echo $propiedad['precio']; ?></td>
                 <td>
                     <a href="propiedades/actualizar.php?id=<?php echo $propiedad['id'];?>" class="boton-amarillo-block">Actualizar</a>
-                    <a href="propiedades/borrar.php" class="boton-rojo-block">Eliminar</a>
+                    <!-- mixion boton with=100% -->
+                    <form method="POST" class="w-100">
+                        <input type="hidden" name="id" value="<?php echo $propiedad['id'];?>">
+                        <input type="submit" class="boton-rojo-block" value="Eliminar">
+                    </form>
                 </td>
             </tr>
             <?php endwhile;?>
